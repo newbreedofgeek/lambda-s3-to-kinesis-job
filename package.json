@@ -1,0 +1,25 @@
+{
+  "name": "lambda-s3-to-kinesis-job",
+  "version": "0.0.1",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/newbreedofgeek/lambda-s3-to-kinesis-job.git"
+  },
+  "keywords": [
+    "lambda",
+    "kinesis",
+    "python",
+    "s3"
+  ],
+  "author": "@newbreedofgeek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/newbreedofgeek/lambda-s3-to-kinesis-job/issues"
+  },
+  "homepage": "https://github.com/newbreedofgeek/lambda-s3-to-kinesis-job#readme"
+}
