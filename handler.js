@@ -33,9 +33,9 @@ def lambda_handler(event, context):
         print('%s items pushed to kinesis.'%(len(pubs)))
 
     except Exception as e:
-        print(e)
-        print('Error getting object {} from bucket {}. Make sure they exist and your bucket is in the same region as this function.'.format(key, bucket))
-        raise e
+      print(e)
+      print('[CRITICAL] issues in workflow, error details are {}'.format(e))
+      raise e
 
     return 'Done'
 
