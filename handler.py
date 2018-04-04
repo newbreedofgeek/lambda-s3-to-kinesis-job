@@ -25,9 +25,14 @@ def lambda_handler(event, context):
         pubs = []
 
         for line in lines:
-          // TODO implement
+          toJson = json.loads(line)
+          #identifier = 'Something unique to assist sharding (push updates of same items down the same shard)'
+
+          publish = Publish(toJson, identifier)
+          pubs.append(dict(publish))
 
         for pub in pubs:
+            time.sleep(0.1)
             put_to_stream(pub)
 
         print('%s items pushed to kinesis.'%(len(pubs)))
@@ -45,3 +50,16 @@ def put_to_stream(payload):
                         StreamName=stream,
                         Data=json.dumps(payload),
                         PartitionKey=payload['partitionkey'])
+
+# A custom class we can use to wrap our kinesis messages
+class Publish:
+    def __init__(self, data, identifier):
+        self.eventSource = 'Origin'
+        self.eventId = str(uuid.uuid4())
+        self.eventTime = datetime.datetime.now().isoformat()
+        self.data = data
+        self.eventMessage = 'Not needed'
+        # self.partitionkey = identifier
+
+    def __iter__(self):
+        return self.__dict__.iteritems()
