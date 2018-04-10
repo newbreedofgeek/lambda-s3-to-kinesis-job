@@ -7,3 +7,4 @@ A Python AWS Lambda project that reads GZIP'ed files, unpacks them, reads JSON a
 
 ### Running it
 - You need to create a new AWS Lambda and copy the `handler/py` code to it
+- I recommend using the serverless framework as the deployment solution
