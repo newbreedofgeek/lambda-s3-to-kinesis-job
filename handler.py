@@ -32,7 +32,7 @@ def lambda_handler(event, context):
           pubs.append(dict(publish))
 
         for pub in pubs:
-            time.sleep(0.1)
+            time.sleep(0.02) # a sleep is useful for throttling, or you should have many many kinesis shards (or both)
             put_to_stream(pub)
 
         print('%s items pushed to kinesis.'%(len(pubs)))
