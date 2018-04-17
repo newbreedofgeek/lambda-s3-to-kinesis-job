@@ -15,12 +15,17 @@ bucket = 'YOUR-INPUT-BUCKET-HERE'
 stream = 'YOUR-OUTPUT-STREAM-HERE'
 
 def lambda_handler(event, context):
+    # here we get the file key that triggered this lambda
     key = urllib.unquote_plus(event['Records'][0]['s3']['object']['key'].encode('utf8'))
 
     try:
+        # lets get that object now
         obj = s3.get_object(Bucket=bucket, Key=key)
+        # read the file content as a stream
         bytestream = io.BytesIO(obj['Body'].read())
+        # un-GZip it as text
         got_text = gzip.GzipFile(None, 'rb', fileobj=bytestream).read().decode('utf-8')
+        # create an array of lines from the file
         lines = got_text.splitlines()
         pubs = []
 
