@@ -33,7 +33,9 @@ def lambda_handler(event, context):
           toJson = json.loads(line)
           #identifier = 'Something unique to assist sharding (push updates of same items down the same shard)'
 
+          # use the Publish class/interface to generate a payload in a format you would like
           publish = Publish(toJson, identifier)
+          # append the instance to a list but convert to a dict before (so its a json struct)
           pubs.append(dict(publish))
 
         for pub in pubs:
