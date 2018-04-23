@@ -51,7 +51,7 @@ def lambda_handler(event, context):
 
     return 'Done'
 
-
+# the method that uses the kinesis client and puts a record
 def put_to_stream(payload):
     put_response = kinesis_client.put_record(
                         StreamName=stream,
@@ -68,5 +68,6 @@ class Publish:
         self.eventMessage = 'Not needed'
         # self.partitionkey = identifier
 
+    # this enables the class instace to be converted to a dict
     def __iter__(self):
         return self.__dict__.iteritems()
